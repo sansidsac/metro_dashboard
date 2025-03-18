@@ -1,11 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metro OD Dashboard</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metro OD Prediction</title>
+  </head>
+  <body>
+    <h2>Congestion Alerts</h2>
+    <p id="alert_message">Loading congestion data...</p>
+
+    <h2>Passenger Flow Dashboard</h2>
+    <ul id="top_stations_list">
+      Loading data...
+    </ul>
+
+    <h2>Alternative Route Suggestions</h2>
+    <form id="route_form">
+      <label for="start_station">Start Station:</label>
+      <input type="text" id="start_station" required />
+      <label for="destination_station">Destination Station:</label>
+      <input type="text" id="destination_station" required />
+      <button type="submit">Find Route</button>
+    </form>
+
+    <ul id="route_suggestions">
+      Enter stations and click "Find Route"
+    </ul>
+    <h1>Metro Origin-Destination Prediction</h1>
+
+    <form id="predictionForm">
+      <label for="lineID">Line ID:</label>
+      <input type="text" id="lineID" name="lineID" required /><br /><br />
+
+      <label for="stationID">Station ID:</label>
+      <input type="text" id="stationID" name="stationID" required /><br /><br />
+
+      <label for="deviceID">Device ID:</label>
+      <input type="text" id="deviceID" name="deviceID" required /><br /><br />
+
+      <label for="payType">Pay Type:</label>
+      <input type="text" id="payType" name="payType" required /><br /><br />
+
+      <label for="time">Travel Time:</label>
+      <input type="datetime-local" id="time" name="time" required /><br /><br />
+
+      <button type="submit">Predict Destination</button>
+    </form>
+
+    <h2>Prediction Result</h2>
+    <p id="result"></p>
+
+    <h2>Fare Optimization</h2>
+
+    <!-- Peak vs Off-Peak Fare -->
+    <h3>Peak vs Off-Peak Fare Calculator</h3>
+    <label>Base Fare: <input type="number" id="baseFare" value="30" /></label>
+    <label>Travel Time: <input type="time" id="travelTime" /></label>
+    <button onclick="calculatePeakFare()">Calculate Fare</button>
+    <p id="peakFareResult"></p>
+
+    <!-- Station-Based Fare Adjustment -->
+    <h3>Station-Based Fare Adjustment</h3>
+    <label
+      >Base Fare: <input type="number" id="stationBaseFare" value="30"
+    /></label>
+    <label
+      >Station ID:
+      <input
+        type="number"
+        id="stationIDval"
+        value=""
+        placeholder="Enter station ID"
+    /></label>
+    <button onclick="adjustStationFare()">Adjust Fare</button>
+    <p id="stationFareResult"></p>
+
+    <!-- Payment Method Discount -->
+    <h3>Payment Method Discount</h3>
+    <label
+      >Base Fare: <input type="number" id="paymentBaseFare" value="30"
+    /></label>
+    <label
+      >Payment Method:
+      <select id="paymentMethod">
+        <option value="metro_card">Metro Card</option>
+        <option value="digital_wallet">Digital Wallet</option>
+        <option value="credit_card">Credit Card</option>
+        <option value="debit_card">Debit Card</option>
+        <option value="cash">Cash</option>
+      </select>
+    </label>
+    <button onclick="applyPaymentDiscount()">Apply Discount</button>
+    <p id="paymentDiscountResult"></p>
+
+    <!-- Congestion Over Time -->
+    <h2>Congestion Levels Over Time</h2>
+    <img id="congestionPlot" src="" alt="Congestion Plot" />
+
+    <!-- Peak vs Off-Peak Passenger Flow -->
+    <h2>Passenger Flow: Peak vs Off-Peak</h2>
+    <img id="peakOffPeakPlot" src="" alt="Peak vs Off-Peak Chart" />
+
+    <!-- MNL OD Matrix -->
+    <h2>MNL - Origin-Destination Flow Heatmap</h2>
+    <img id="odMatrixMNL" src="" alt="MNL OD Matrix" />
+
+    <!-- XGBoost OD Matrix -->
+    <h2>XGBoost - Origin-Destination Flow Heatmap</h2>
+    <img id="odMatrixXGB" src="" alt="XGBoost OD Matrix" />
+
+    <script src="static/script.js"></script>
+  </body>
 </html>
