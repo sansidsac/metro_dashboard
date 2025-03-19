@@ -235,7 +235,7 @@ def alternative_routes():
         start_station = int(data["start_station"])
         destination_station = int(data["destination_station"])
 
-        print(f"🔍 API Debug: Start={start_station}, Destination={destination_station}")
+        print(f"API Debug: Start={start_station}, Destination={destination_station}")
 
         # Load dataset
         df = pd.read_csv("data_filtered.csv")
@@ -254,7 +254,7 @@ def alternative_routes():
         routes = df[(df["stationID"] == start_station) & (df["destinationStation"] == destination_station)]
 
         if routes.empty:
-            print("⚠️ No direct routes found.")
+            print("No direct routes found.")
             return jsonify({"error": "No direct route found. Consider transfers."}), 400
 
         # Compute alternative routes
